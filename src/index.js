@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Intro from './pages/Intro';
+import Routes from './navigation';
 
-const App = () => <Intro />;
+const App = () => <Routes />;
 
 export default App;
