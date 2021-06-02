@@ -18,7 +18,7 @@ const Dashboard = () => (
   <Container>
     <TopContainer>
       <Avatar />
-      <Greetings>{'Hi, Talles'}</Greetings>
+      <Greetings>{'Olá Talles'}</Greetings>
     </TopContainer>
     <CategoriesContainer>
       <CategoriesLabelRow>

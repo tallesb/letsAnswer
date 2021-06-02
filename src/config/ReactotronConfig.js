@@ -3,8 +3,11 @@ import {reactotronRedux} from 'reactotron-redux';
 import sagaPlugin from 'reactotron-redux-saga';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+let tron = null;
+
 if (__DEV__) {
-  const tron = Reactotron.configure()
+  tron = Reactotron.setAsyncStorageHandler(AsyncStorage)
+    .configure()
     .useReactNative()
     .use(reactotronRedux())
     .use(sagaPlugin())
@@ -14,3 +17,5 @@ if (__DEV__) {
 
   console.tron = tron;
 }
+
+export default tron;

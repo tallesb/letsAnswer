@@ -3,7 +3,7 @@ import axios from 'axios';
 class Api {
   constructor() {
     const api = axios.create({
-      baseURL: 'https://opentdb.com/api.php',
+      baseURL: 'https://opentdb.com',
     });
     api.interceptors.response.use(this.handleSuccess, this.handleError);
     this.api = api;
