@@ -4,10 +4,7 @@ import {getQuestionsByCategory} from '../../services/categories';
 import * as rootNavigation from '../../navigation/RootNavigation';
 import {Types} from '../ducks/categories';
 
-const navigateQuestion = () => {
-  console.log('cheguei aqui');
-  return rootNavigation.navigate('Quest');
-};
+const navigateQuestion = () => rootNavigation.navigate('Quest');
 
 function* selectACategory({payload}) {
   const {categoryId} = payload;

@@ -32,5 +32,4 @@ export const CategoryLabel = styled.Text`
 
 export const CategoryIcon = styled(MaterialCommunityIcons).attrs({
   size: 40,
-  color: 'black',
 })``;

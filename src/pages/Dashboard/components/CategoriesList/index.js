@@ -15,7 +15,7 @@ const CategoriesList = () => {
 
   const renderCard = ({item}) => (
     <Container onPress={() => getQuestions(item.id)}>
-      <CategoryIcon name={item.icon} />
+      <CategoryIcon name={item.icon} color={item.color} />
       <CategoryLabel>{item.label}</CategoryLabel>
     </Container>
   );
