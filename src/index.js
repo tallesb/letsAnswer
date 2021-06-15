@@ -1,7 +1,13 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 
-import Intro from './pages/Intro';
+import store from './store';
+import Routes from './navigation';
 
-const App = () => <Intro />;
+const App = () => (
+  <Provider store={store}>
+    <Routes />
+  </Provider>
+);
 
 export default App;
