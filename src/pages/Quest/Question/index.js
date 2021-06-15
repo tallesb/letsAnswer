@@ -1,8 +1,21 @@
 import React from 'react';
-import {View} from 'react-native';
+import {useSelector} from 'react-redux';
 
-// import { Container } from './styles';
+import QuestionOptions from '../QuestionsRadio';
 
-const Question = () => <View style={{flex: 1, backgroundColor: 'pink'}} />;
+import {Container, QuestionDescription} from './styles';
+
+const Question = () => {
+  const {currentQuestion} = useSelector(state => state.questions);
+
+  console.tron.log('current', currentQuestion);
+
+  return (
+    <Container>
+      <QuestionDescription>{currentQuestion.question}</QuestionDescription>
+      <QuestionOptions question={currentQuestion} />
+    </Container>
+  );
+};
 
 export default Question;

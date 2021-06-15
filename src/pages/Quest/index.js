@@ -1,49 +1,39 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector, useDispatch} from 'react-redux';
+
+import {answerQuestion} from '../../store/ducks/questions';
 
 import {
   Container,
-  Header,
-  CategoryLabel,
-  CurrentQuestionNumber,
-  QuestionContainer,
-  TotalQuestions,
-  DotsContainer,
-  Dot,
   QuitButton,
   ButtonsContainer,
   QuitButtonLabel,
   NextButton,
   NextButtonLabel,
 } from './styles';
-import Status from './Status';
+
+import QuestionCount from './QuestionCount';
 import Question from './Question';
 
 const Quest = () => {
   const navigation = useNavigation();
 
-  // const goToDashboard = () => navigation.navigate('Dashboard');
+  const {questionsAnswered} = useSelector(state => state.questions);
+
+  const dispatch = useDispatch();
+
+  const handleAnswerQuestion = () => dispatch(answerQuestion());
 
   return (
     <Container>
-      <Header>
-        <CategoryLabel>{'Mahtematics Quiz'}</CategoryLabel>
-        <QuestionContainer>
-          <CurrentQuestionNumber>{'Question 06'}</CurrentQuestionNumber>
-          <TotalQuestions>{'/10'}</TotalQuestions>
-        </QuestionContainer>
-        <DotsContainer>
-          {[...Array(10).keys()].map(number => (
-            <Dot status={Status.WRONG} />
-          ))}
-        </DotsContainer>
-      </Header>
+      <QuestionCount />
       <Question />
       <ButtonsContainer>
         <QuitButton>
           <QuitButtonLabel>{'Quit Quiz'}</QuitButtonLabel>
         </QuitButton>
-        <NextButton>
+        <NextButton onPress={handleAnswerQuestion}>
           <NextButtonLabel>{'Next'}</NextButtonLabel>
         </NextButton>
       </ButtonsContainer>
