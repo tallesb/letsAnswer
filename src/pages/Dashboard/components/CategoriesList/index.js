@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 
-import categories from './categories';
+import categories from '../../../../constants/categories';
 import {selectCategory} from '../../../../store/ducks/categories';
 
 import {Container, CategoryLabel, CategoryIcon, List} from './styles';

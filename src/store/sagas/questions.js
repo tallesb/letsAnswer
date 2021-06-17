@@ -1,13 +1,11 @@
 import {takeEvery, call, put, select} from 'redux-saga/effects';
 
-import {Types as QuestionsTypes} from '../ducks/questions';
+import {Types as QuestionsTypes} from '../ducks/quizz';
 
 function* answerQuestionSaga() {
-  const {currentQuestion, selectedOption} = yield select(
-    state => state.questions,
-  );
+  const {question, selectedOption} = yield select(state => state.question);
 
-  const {options, correct_answer} = currentQuestion;
+  const {options, correct_answer} = question;
 
   const isCorrect = options[selectedOption] === correct_answer;
 

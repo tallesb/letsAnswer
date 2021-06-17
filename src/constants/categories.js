@@ -24,22 +24,10 @@ export default [
     color: '#0095E6',
   },
   {
-    id: 24,
-    label: 'Politic',
-    icon: 'scale-balance',
-    color: '#5AC18E',
-  },
-  {
     id: 9,
     label: 'General knowledge',
     icon: 'book-open-page-variant',
     color: '#161d28',
-  },
-  {
-    id: 19,
-    label: 'Mathematic',
-    icon: 'math-compass',
-    color: '#ff6c3a',
   },
   {
     id: 17,
@@ -52,5 +40,17 @@ export default [
     label: 'Movies',
     icon: 'movie-roll',
     color: '#847AB4',
+  },
+  {
+    id: 14,
+    label: 'Television',
+    icon: 'television-classic',
+    color: '#FF5733',
+  },
+  {
+    id: 10,
+    label: 'Video Games',
+    icon: 'google-controller',
+    color: '#118E86',
   },
 ];

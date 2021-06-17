@@ -10,22 +10,17 @@ import {
   CategoriesContainer,
   CategoriesLabel,
   CategoriesLabelRow,
-  AllCategoriesButton,
-  AllCategoriesButtonLabel,
 } from './styles';
 
 const Dashboard = () => (
   <Container>
     <TopContainer>
       <Avatar />
-      <Greetings>{'Olá Talles'}</Greetings>
+      <Greetings>{'Hi Talles'}</Greetings>
     </TopContainer>
     <CategoriesContainer>
       <CategoriesLabelRow>
-        <CategoriesLabel>{'Categorias'}</CategoriesLabel>
-        <AllCategoriesButton>
-          <AllCategoriesButtonLabel>{'VER TODAS'}</AllCategoriesButtonLabel>
-        </AllCategoriesButton>
+        <CategoriesLabel>{'Categories'}</CategoriesLabel>
       </CategoriesLabelRow>
       <CategoriesList />
     </CategoriesContainer>

@@ -6,14 +6,14 @@ import QuestionOptions from '../QuestionsRadio';
 import {Container, QuestionDescription} from './styles';
 
 const Question = () => {
-  const {currentQuestion} = useSelector(state => state.questions);
+  const {question} = useSelector(state => state.question);
 
-  console.tron.log('current', currentQuestion);
+  console.tron.log('current', question);
 
   return (
     <Container>
-      <QuestionDescription>{currentQuestion.question}</QuestionDescription>
-      <QuestionOptions question={currentQuestion} />
+      <QuestionDescription>{question.question}</QuestionDescription>
+      <QuestionOptions question={question} />
     </Container>
   );
 };
