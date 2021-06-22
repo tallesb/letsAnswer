@@ -10,6 +10,7 @@ export const Types = {
   NEW_QUESTION: 'NEW_QUESTION',
   SELECT_OPTION: 'SELECT_OPTION',
   FINISH_QUIZZ: 'FINISH_QUIZZ',
+  QUIT_QUIZZ: 'QUIT_QUIZZ',
 };
 
 const INITIAL_STATE = {
@@ -76,6 +77,8 @@ export default function reducer(state = INITIAL_STATE, {type, payload = null}) {
         level: payload.newLevel,
         loading: false,
       };
+    case Types.QUIT_QUIZZ:
+      return INITIAL_STATE;
     default:
       return state;
   }
@@ -83,4 +86,8 @@ export default function reducer(state = INITIAL_STATE, {type, payload = null}) {
 
 export const answerQuestion = () => ({
   type: Types.ANSWER_QUESTION,
+});
+
+export const quitQuizz = () => ({
+  type: Types.QUIT_QUIZZ,
 });

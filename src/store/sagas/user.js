@@ -5,7 +5,7 @@ import '../../config/ReactotronConfig';
 
 import {Types as UserTypes} from '../ducks/user';
 
-const navigateDashboard = () => rootNavigation.navigate('AppRoute');
+const navigateDashboard = () => rootNavigation.reset('AppRoute');
 
 function* loginSaga() {
   yield call(navigateDashboard);

@@ -4,6 +4,8 @@ import FastImage from 'react-native-fast-image';
 
 import CategoriesList from './components/CategoriesList';
 
+import LoadingPage from '../Loading';
+
 import {
   Container,
   TopContainer,
@@ -15,6 +17,7 @@ import {
 
 const Dashboard = () => {
   const {name} = useSelector(state => state.user);
+  const {loading} = useSelector(state => state.categories);
 
   return (
     <Container>
@@ -34,6 +37,7 @@ const Dashboard = () => {
         </CategoriesLabelRow>
         <CategoriesList />
       </CategoriesContainer>
+      {loading && <LoadingPage />}
     </Container>
   );
 };

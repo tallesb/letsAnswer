@@ -2,7 +2,9 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 
-import {answerQuestion} from '../../store/ducks/quizz';
+import {answerQuestion, quitQuizz} from '../../store/ducks/quizz';
+
+import LoadingPage from '../Loading';
 
 import {
   Container,
@@ -11,8 +13,6 @@ import {
   QuitButtonLabel,
   NextButton,
   NextButtonLabel,
-  Loading,
-  Indicator,
 } from './styles';
 
 import QuestionCount from './QuestionCount';
@@ -27,6 +27,10 @@ const Quest = () => {
   const dispatch = useDispatch();
 
   const handleAnswerQuestion = () => dispatch(answerQuestion());
+  const handleQuitQuizz = () => {
+    navigation.popToTop();
+    dispatch(quitQuizz());
+  };
 
   return (
     <>
@@ -34,7 +38,7 @@ const Quest = () => {
         <QuestionCount />
         <Question />
         <ButtonsContainer>
-          <QuitButton>
+          <QuitButton onPress={handleQuitQuizz}>
             <QuitButtonLabel>{'Quit Quiz'}</QuitButtonLabel>
           </QuitButton>
           <NextButton
@@ -44,11 +48,7 @@ const Quest = () => {
           </NextButton>
         </ButtonsContainer>
       </Container>
-      {loading && (
-        <Loading>
-          <Indicator />
-        </Loading>
-      )}
+      {loading && <LoadingPage />}
     </>
   );
 };
