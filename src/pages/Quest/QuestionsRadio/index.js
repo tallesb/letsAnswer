@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
-import {selectOption} from '../../../store/ducks/questions';
+import {selectOption} from '../../../store/ducks/question';
 
 import {
   Container,
@@ -15,7 +15,7 @@ import {
 const QuestionsRadio = ({question}) => {
   const {options} = question;
 
-  const {selectedOption} = useSelector(state => state.questions);
+  const {selectedOption} = useSelector(state => state.question);
 
   const dispatch = useDispatch();
 
@@ -23,7 +23,6 @@ const QuestionsRadio = ({question}) => {
     <Container>
       {options.map((option, index) => {
         const selected = index === selectedOption;
-        console.tron.log(index, selectedOption);
 
         return (
           <OptionContainer

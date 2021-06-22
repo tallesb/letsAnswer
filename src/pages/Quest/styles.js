@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, ActivityIndicator} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Fonts from '../../styles/fonts';
@@ -98,13 +98,32 @@ export const NextButtonLabel = styled(QuitButtonLabel)`
   color: white;
 `;
 
-export const NextButton = styled(QuitButton)`
-  background: #09d3f6;
+export const NextButton = styled(QuitButton).attrs(({enabled}) => ({
+  disabled: !enabled,
+}))`
+  background: ${({enabled}) => (enabled ? '#09d3f6' : '#c8cbcd')};
   border-radius: 8px;
 `;
 
 export const QuitIcon = styled(MaterialCommunityIcons).attrs({
   size: 24,
   name: 'power-standby',
+  color: '#c8cbcd',
+})``;
+
+export const Loading = styled.View`
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0.7;
+  background: #1e2545;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Indicator = styled(ActivityIndicator).attrs({
+  size: 'large',
   color: '#c8cbcd',
 })``;

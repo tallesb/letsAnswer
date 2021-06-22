@@ -1,9 +1,13 @@
 import {combineReducers} from 'redux';
 
 import categories from './categories';
-import questions from './questions';
+import quizz from './quizz';
+import question from './question';
+import user from './user';
 
 export default combineReducers({
   categories,
-  questions,
+  quizz,
+  question,
+  user,
 });

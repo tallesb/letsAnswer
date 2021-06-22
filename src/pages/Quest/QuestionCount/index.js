@@ -14,11 +14,13 @@ import {
 } from './styles';
 
 const QuestionCount = () => {
-  const {trail, questionsAnswered} = useSelector(state => state.questions);
+  const {trail, questionsAnswered, categoryLabel} = useSelector(
+    state => state.quizz,
+  );
 
   return (
     <Container>
-      <CategoryLabel>{'Mahtematics Quiz'}</CategoryLabel>
+      <CategoryLabel>{`${categoryLabel} Quizz`}</CategoryLabel>
       <QuestionContainer>
         <CurrentQuestionNumber>{`Question ${
           questionsAnswered + 1
@@ -27,9 +29,15 @@ const QuestionCount = () => {
       </QuestionContainer>
       <DotsContainer>
         {[...Array(10).keys()].map(number => {
-          const questionStatus =
-            trail.length > number ? trail[number] : Status.CURRENT;
-          return <Dot status={questionStatus} key={number} />;
+          let status = null;
+
+          if (trail.length > number) {
+            status = trail[number] ? Status.CORRECT : Status.WRONG;
+          } else {
+            status = trail.length === number ? Status.CURRENT : Status.ONCOMING;
+          }
+
+          return <Dot status={status} key={number} />;
         })}
       </DotsContainer>
     </Container>

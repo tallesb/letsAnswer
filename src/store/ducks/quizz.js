@@ -1,29 +1,33 @@
+import 'react-native-get-random-values';
+import {v4 as uuidv4} from 'uuid';
+
 import {Types as CategoriesTypes} from './categories';
-import StatusQuestion from '../../constants/StatusQuestion';
+import Level from '../../constants/Level';
 
 export const Types = {
   ANSWER_QUESTION: 'ANSWER_QUESTION',
-  ANSWER_QUESTION_WRONG: 'ANSWER_QUESTION_WRONG',
-  ANSWER_QUESTION_CORRECT: 'ANSWER_QUESTION_CORRECT',
+  ANSWER_QUESTION_RETURN: 'ANSWER_QUESTION_RETURN',
   NEW_QUESTION: 'NEW_QUESTION',
   SELECT_OPTION: 'SELECT_OPTION',
+  FINISH_QUIZZ: 'FINISH_QUIZZ',
+  QUIT_QUIZZ: 'QUIT_QUIZZ',
 };
 
 const INITIAL_STATE = {
   questions: [],
   corrects: [],
   wrongs: [],
-  currentQuestion: null,
   questionsAnswered: 0,
   trail: [],
-  selectedOption: null,
-  level:
+  loading: false,
+  level: Level.EASY,
+  categoryLabel: null,
 };
 
 const shuffleQuestions = questions => {
   questions.map(question => {
     const {incorrect_answers, correct_answer} = question;
-
+    question.id = uuidv4();
     question.options = [...incorrect_answers, correct_answer].sort(
       () => Math.random() - 0.5,
     );
@@ -38,43 +42,43 @@ const shuffleAllQuestions = questionsList => ({
   hard: shuffleQuestions(questionsList.hard),
 });
 
-export default function reducer(state = INITIAL_STATE, action) {
-  const {type} = action;
+export default function reducer(state = INITIAL_STATE, {type, payload = null}) {
+  let questions = null;
 
   switch (type) {
     case CategoriesTypes.GET_QUESTIONS_SUCCESS:
-      const questions = shuffleAllQuestions(action.payload.questions);
-      const currentQuestion = questions.easy[0];
+      questions = shuffleAllQuestions(payload.questions);
 
       return {
         ...INITIAL_STATE,
         questions,
-        currentQuestion,
+        categoryLabel: payload.categoryLabel,
       };
-    case Types.ANSWER_QUESTION_CORRECT:
+    case Types.ANSWER_QUESTION:
+      return {
+        ...state,
+        loading: true,
+      };
+    case Types.ANSWER_QUESTION_RETURN:
       return {
         ...state,
         questionsAnswered: state.questionsAnswered + 1,
-        corrects: [...corrects, action.payload.currentQuestion],
-        trail: [...trail, StatusQuestion.CORRECT],
-      };
-    case Types.ANSWER_QUESTION_WRONG:
-      return {
-        ...state,
-        questionsAnswered: state.questionsAnswered + 1,
-        wrongs: [...wrongs, action.payload.currentQuestion],
-        trail: [...trail, StatusQuestion.WRONG],
+        corrects: payload.isCorrect
+          ? [...state.corrects, payload.question]
+          : state.corrects,
+        wrongs: !payload.isCorrect
+          ? [...state.wrongs, payload.question]
+          : state.wrongs,
+        trail: [...state.trail, payload.isCorrect],
       };
     case Types.NEW_QUESTION:
       return {
         ...state,
-        currentQuestion: action.payload.currentQuestion,
+        level: payload.newLevel,
+        loading: false,
       };
-    case Types.SELECT_OPTION:
-      return {
-        ...state,
-        selectedOption: action.payload.selectedOption,
-      };
+    case Types.QUIT_QUIZZ:
+      return INITIAL_STATE;
     default:
       return state;
   }
@@ -84,9 +88,6 @@ export const answerQuestion = () => ({
   type: Types.ANSWER_QUESTION,
 });
 
-export const selectOption = selectedOption => ({
-  type: Types.SELECT_OPTION,
-  payload: {
-    selectedOption,
-  },
+export const quitQuizz = () => ({
+  type: Types.QUIT_QUIZZ,
 });

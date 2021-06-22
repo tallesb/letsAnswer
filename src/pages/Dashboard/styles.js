@@ -1,17 +1,11 @@
+import FastImage from 'react-native-fast-image';
+
 import styled from 'styled-components';
 import Fonts from '../../styles/fonts';
-import Colors from '../../styles/colors';
 
 export const Container = styled.View`
   flex: 1;
   background: #e9f0f3;
-`;
-
-export const Avatar = styled.View`
-  height: 50px;
-  width: 50px;
-  border-radius: 25px;
-  background: white;
 `;
 
 export const TopContainer = styled.View`

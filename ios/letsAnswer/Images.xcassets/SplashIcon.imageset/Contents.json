@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "643px-Light_Bulb_or_Idea_Flat_Icon_Vector.svg.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "643px-Light_Bulb_or_Idea_Flat_Icon_Vector.svg-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "643px-Light_Bulb_or_Idea_Flat_Icon_Vector.svg-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
